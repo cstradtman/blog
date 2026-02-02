@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Chris Stradtman</title>
+    <link>http://localhost:1313/</link>
+    <description>Recent content on Chris Stradtman</description>
+    <generator>Hugo -- 0.155.1</generator>
+    <language>en-us</language>
+    <lastBuildDate>Thu, 01 Jan 2026 00:00:00 +0000</lastBuildDate>
+    <atom:link href="http://localhost:1313/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Placeholder</title>
+      <link>http://localhost:1313/kube-demo/placeholder/</link>
+      <pubDate>Thu, 01 Jan 2026 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/kube-demo/placeholder/</guid>
+      <description>&lt;p&gt;This is a placeholder. Replace this with imported kube-demo Blogger posts.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Placeholder Post</title>
+      <link>http://localhost:1313/blog/placeholder-post/</link>
+      <pubDate>Thu, 01 Jan 2026 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/blog/placeholder-post/</guid>
+      <description>&lt;p&gt;This is a placeholder. Replace this with imported Blogger content.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Placeholder Project</title>
+      <link>http://localhost:1313/projects/placeholder-project/</link>
+      <pubDate>Thu, 01 Jan 2026 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/projects/placeholder-project/</guid>
+      <description>&lt;p&gt;Replace this with a real project entry.&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

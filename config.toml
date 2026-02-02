@@ -1,0 +1,76 @@
+baseURL = "https://chrisstradtman.com/"
+title = "Chris Stradtman"
+theme = "PaperMod"
+languageCode = "en-us"
+enableRobotsTXT = true
+
+[pagination]
+  pagerSize = 10
+
+[params]
+  Title = "Chris Stradtman"
+  Content = "Engineering, Kubernetes, homelab, and technical writing"
+  description = "Technical writing, Kubernetes builds, homelab engineering, and professional work by Chris Stradtman."
+  author = "Chris Stradtman"
+
+  # PaperMod-required keys
+  env = "production"
+  defaultTheme = "auto"
+  ShowReadingTime = true
+  ShowShareButtons = true
+  ShowPostNavLinks = true
+  ShowBreadCrumbs = true
+  ShowCodeCopyButtons = true
+  ShowRssButtonInSectionTermList = true
+
+  # Optional but recommended
+  homeInfoParams = { Title = "Chris Stradtman", Content = "Engineering, Kubernetes, homelab, and technical writing." }
+
+[menu]
+
+  [[menu.main]]
+    name = "Blog"
+    url = "/blog/"
+    weight = 10
+
+  [[menu.main]]
+    name = "Kube Demo"
+    url = "/kube-demo/"
+    weight = 20
+
+  [[menu.main]]
+    name = "Resume"
+    url = "/resume/"
+    weight = 30
+
+  [[menu.main]]
+    name = "Projects"
+    url = "/projects/"
+    weight = 40
+
+[taxonomies]
+  category = "categories"
+  tag = "tags"
+
+[outputs]
+  home = ["HTML", "RSS", "JSON"]
+
+[permalinks]
+  blog = "/blog/:slug/"
+  kube-demo = "/kube-demo/:slug/"
+  resume = "/resume/"
+  projects = "/projects/:slug/"
+
+[markup]
+  [markup.highlight]
+    style = "monokai"
+    noClasses = false
+
+  [markup.goldmark.renderer]
+    unsafe = true
+
+[sitemap]
+  changefreq = "weekly"
+  priority = 0.7
+  filename = "sitemap.xml"
+
