@@ -244,82 +244,82 @@ The code for this demonstration included in the git repos
 
 In a future post, we’ll show how to leverage other Edgio solutions for example Applications. We could use the Kubernetes cluster as a way to leverage and sync configurations among multiple Edgio CDN offerings for different workflows.
 
-Appendix 1 – pywai-inline-deployment.yaml
-
-
+```yaml
 apiVersion: apps/v1
-
 kind: Deployment
-
 metadata:
-
- name: pywai-inline-deployment
-
+name: pywai-inline-deployment
 spec:
-selector:
-matchLabels:
-app: pywai-inline-deployment
-replicas: 1
-template:
-metadata:
-labels:
-app: pywai-inline-deployment
-spec:
-containers:
-- name: python
-image: python:3
-command:
-- /bin/sh
-- "-c"
-- |
-cat > /test.py <<EOF
-#!/usr/bin/env python3
-"""
-Very simple HTTP server in python for logging requests
-Usage::
-./server.py [<port>]
-"""
-from http.server import BaseHTTPRequestHandler, HTTPServer
-import logging
-import pprint
-class S(BaseHTTPRequestHandler):
-def \_set\_response(self):
-self.send\_response(200)
-self.send\_header('Content-type', 'text/html')
-self.end\_headers()
-def do\_GET(self):
-logging.info("GET request,\nPath: %s\nHeaders:\n%s\n", str(self.path), str(pprint.pformat(self.headers)))
-self.\_set\_response()
-headerinfo = pprint.pformat(self.headers.items())
-clientinfo = pprint.pformat(self.client\_address)
-lineinfo = pprint.pformat(self.requestline)
-versioninfo = pprint.pformat(self.request\_version)
-self.wfile.write("<pre> {} </pre>".format(headerinfo).encode('utf-8'))
-self.wfile.write("<pre> {} </pre>".format(clientinfo).encode('utf-8'))
-self.wfile.write("<pre> {} </pre>".format(lineinfo).encode('utf-8'))
-self.wfile.write("<pre> {} </pre>".format(versioninfo).encode('utf-8'))
-def run(server\_class=HTTPServer, handler\_class=S, port=8080):
-logging.basicConfig(level=logging.INFO)
-server\_address = ('', port)
-httpd = server\_class(server\_address, handler\_class)
-logging.info('Starting httpd...\n')
-try:
-httpd.serve\_forever()
-except KeyboardInterrupt:
-pass
-httpd.server\_close()
-logging.info('Stopping httpd...\n')
-if \_\_name\_\_ == '\_\_main\_\_':
-from sys import argv
-if len(argv) == 2:
-run(port=int(argv[1]))
-else:
-run()
-EOF
-exec python /test.py 8000
-ports:
-- name: http
-containerPort: 8000
+  selector:
+    matchLabels:
+      app: pywai-inline-deployment
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: pywai-inline-deployment
+    spec:
+      containers:
+        - name: python
+          image: python:3
+          command:
+            - /bin/sh
+            - "-c"
+            - |
+              cat > /test.py <<EOF
+              #!/usr/bin/env python3
+              """
+              Very simple HTTP server in python for logging requests
+              Usage::
+                  ./server.py [<port>]
+              """
+              from http.server import BaseHTTPRequestHandler, HTTPServer
+              import logging
+              import pprint
+
+              class S(BaseHTTPRequestHandler):
+                  def _set_response(self):
+                      self.send_response(200)
+                      self.send_header('Content-type', 'text/html')
+                      self.end_headers()
+
+                  def do_GET(self):
+                      logging.info("GET request,\nPath: %s\nHeaders:\n%s\n", str(self.path), str(pprint.pformat(self.headers)))
+                      self._set_response()
+                      headerinfo = pprint.pformat(self.headers.items())
+                      clientinfo = pprint.pformat(self.client_address)
+                      lineinfo = pprint.pformat(self.requestline)
+                      versioninfo = pprint.pformat(self.request_version)
+
+                      self.wfile.write("<pre> {} </pre>".format(headerinfo).encode('utf-8'))
+                      self.wfile.write("<pre> {} </pre>".format(clientinfo).encode('utf-8'))
+                      self.wfile.write("<pre> {} </pre>".format(lineinfo).encode('utf-8'))
+                      self.wfile.write("<pre> {} </pre>".format(versioninfo).encode('utf-8'))
+
+              def run(server_class=HTTPServer, handler_class=S, port=8080):
+                  logging.basicConfig(level=logging.INFO)
+                  server_address = ('', port)
+                  httpd = server_class(server_address, handler_class)
+                  logging.info('Starting httpd...\n')
+                  try:
+                      httpd.serve_forever()
+                  except KeyboardInterrupt:
+                      pass
+                  httpd.server_close()
+                  logging.info('Stopping httpd...\n')
+
+              if __name__ == '__main__':
+                  from sys import argv
+                  if len(argv) == 2:
+                      run(port=int(argv[1]))
+                  else:
+                      run()
+              EOF
+              exec python /test.py 8000
+          ports:
+            - name: http
+              containerPort: 8000
+```
 
 ### Appendix 2 – pywai-inline-service.yaml
 
